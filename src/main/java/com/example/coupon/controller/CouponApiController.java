@@ -1,7 +1,7 @@
 package com.example.coupon.controller;
 
-import com.example.coupon.domain.dto.CouponDto;
-import com.example.coupon.domain.entity.Coupon;
+import com.example.coupon.domain.dto.CouponPolicyDto;
+import com.example.coupon.domain.entity.CouponPolicy;
 import com.example.coupon.service.CouponSerivce;
 import java.time.LocalDateTime;
 import lombok.RequiredArgsConstructor;
@@ -22,10 +22,10 @@ public class CouponApiController {
   final CouponSerivce couponSerivce;
 
   @PostMapping
-  public ResponseEntity save(@RequestBody CouponDto couponDto) {
-    couponDto.setCreateDate(LocalDateTime.now());
-    couponDto.setUpdateDate(LocalDateTime.now());
-    couponSerivce.save(Coupon.ofDto(couponDto));
+  public ResponseEntity save(@RequestBody CouponPolicyDto couponPolicyDto) {
+    couponPolicyDto.setCreateDate(LocalDateTime.now());
+    couponPolicyDto.setUpdateDate(LocalDateTime.now());
+    couponSerivce.save(CouponPolicy.ofDto(couponPolicyDto));
     return new ResponseEntity(null, HttpStatus.CREATED);
   }
 

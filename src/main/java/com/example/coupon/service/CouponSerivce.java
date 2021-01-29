@@ -1,14 +1,14 @@
 package com.example.coupon.service;
 
-import com.example.coupon.domain.entity.Coupon;
+import com.example.coupon.domain.entity.CouponPolicy;
 import org.springframework.stereotype.Service;
 
 @Service
 public interface CouponSerivce {
 
-  Coupon findById(Long id);
+  CouponPolicy findById(Long id);
 
-  void save(Coupon coupon);
+  void save(CouponPolicy couponPolicy);
 
   void delete(Long id);
 }

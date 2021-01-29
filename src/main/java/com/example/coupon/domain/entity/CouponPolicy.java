@@ -1,9 +1,8 @@
 package com.example.coupon.domain.entity;
 
 import com.example.coupon.domain.SellerType;
-import com.example.coupon.domain.dto.CouponDto;
+import com.example.coupon.domain.dto.CouponPolicyDto;
 import java.time.LocalDateTime;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -20,16 +19,15 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-public class Coupon {
+public class CouponPolicy {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  private String name;
+  private String title;
 
   @Enumerated(EnumType.STRING)
-  @Column(name = "seller_type")
   private SellerType sellerType;
 
   private Long sellerId;
@@ -39,25 +37,25 @@ public class Coupon {
   private LocalDateTime updateDate;
 
   @Builder
-  public Coupon(String name, SellerType sellerType, Long sellerId) {
-    this.name = name;
+  public CouponPolicy(String title, SellerType sellerType, Long sellerId) {
+    this.title = title;
     this.sellerType = sellerType;
     this.sellerId = sellerId;
     this.createDate = LocalDateTime.now();
     this.updateDate = LocalDateTime.now();
   }
 
-  protected Coupon(CouponDto dto) {
+  protected CouponPolicy(CouponPolicyDto dto) {
     this.id = dto.getId();
-    this.name = dto.getName();
+    this.title = dto.getName();
     this.sellerType = dto.getSellerType();
     this.sellerId = dto.getSellerId();
     this.createDate = dto.getCreateDate();
     this.updateDate = dto.getUpdateDate();
   }
 
-  public static Coupon ofDto(CouponDto dto) {
-    return new Coupon(dto);
+  public static CouponPolicy ofDto(CouponPolicyDto dto) {
+    return new CouponPolicy(dto);
   }
 
 }
