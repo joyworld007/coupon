@@ -3,19 +3,15 @@ package com.example.coupon.domain.entity;
 import com.example.coupon.domain.SellerType;
 import com.example.coupon.domain.dto.CouponPolicyDto;
 import java.time.LocalDateTime;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.*;
 
-@Table(name = "coupon")
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.*;
+
+@Table(name = "coupon_policy")
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
@@ -25,7 +21,7 @@ public class CouponPolicy {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  private String title;
+  private String name;
 
   @Enumerated(EnumType.STRING)
   private SellerType sellerType;
@@ -36,9 +32,12 @@ public class CouponPolicy {
 
   private LocalDateTime updateDate;
 
+  @OneToMany(mappedBy = "couponPolicy", fetch = FetchType.LAZY)
+  private List<Coupon> couponList = new ArrayList<>();
+
   @Builder
-  public CouponPolicy(String title, SellerType sellerType, Long sellerId) {
-    this.title = title;
+  public CouponPolicy(String name, SellerType sellerType, Long sellerId) {
+    this.name = name;
     this.sellerType = sellerType;
     this.sellerId = sellerId;
     this.createDate = LocalDateTime.now();
@@ -47,7 +46,7 @@ public class CouponPolicy {
 
   protected CouponPolicy(CouponPolicyDto dto) {
     this.id = dto.getId();
-    this.title = dto.getName();
+    this.name = dto.getName();
     this.sellerType = dto.getSellerType();
     this.sellerId = dto.getSellerId();
     this.createDate = dto.getCreateDate();

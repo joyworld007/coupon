@@ -37,5 +37,5 @@ out/
 .vscode/
 
 ### H2 DB ###
-couponPolicy.mv.db
-couponPolicy.trace.db
+coupon.mv.db
+coupon.trace.db

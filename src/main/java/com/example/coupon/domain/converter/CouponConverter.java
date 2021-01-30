@@ -1,13 +1,12 @@
 package com.example.coupon.domain.converter;
 
 import com.example.coupon.common.BaseConverter;
-import com.example.coupon.domain.dto.CouponPolicyDto;
-import com.example.coupon.domain.entity.CouponPolicy;
+import com.example.coupon.domain.dto.CouponDto;
+import com.example.coupon.domain.entity.Coupon;
 
-public class CouponConverter extends BaseConverter<CouponPolicyDto, CouponPolicy> {
+public class CouponConverter extends BaseConverter<CouponDto, Coupon> {
 
-  public CouponConverter() {
-    super(CouponPolicy::ofDto, CouponPolicyDto::ofEntity);
-  }
-
+    public CouponConverter() {
+        super(Coupon::ofDto, CouponDto::ofEntity);
+    }
 }
