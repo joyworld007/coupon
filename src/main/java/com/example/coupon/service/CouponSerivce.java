@@ -1,14 +1,16 @@
 package com.example.coupon.service;
 
-import com.example.coupon.domain.entity.CouponPolicy;
+import com.example.coupon.domain.dto.CouponPolicyDto;
+import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 @Service
 public interface CouponSerivce {
 
-  CouponPolicy findById(Long id);
+  @Transactional
+  CouponPolicyDto findById(Long id);
 
-  void save(CouponPolicy couponPolicy);
+  void save(CouponPolicyDto couponPolicyDto);
 
   void delete(Long id);
 }

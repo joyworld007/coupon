@@ -20,6 +20,8 @@ public class CouponDto {
 
     private String status;
 
+    private Long orderId;
+
     private LocalDateTime createDate;
 
     private LocalDateTime updateDate;
@@ -28,6 +30,7 @@ public class CouponDto {
         this.id = entity.getId();
         this.couponPolicyId = entity.getCouponPolicy().getId();
         this.status = entity.getStatus();
+        this.orderId = entity.getOrderId();
         this.userId = entity.getUserId();
         this.createDate = entity.getCreateDate();
         this.updateDate = entity.getUpdateDate();
